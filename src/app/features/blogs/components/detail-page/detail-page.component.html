@@ -1,0 +1,73 @@
+<app-page-loader *ngIf="isLoading"></app-page-loader>
+
+<div class="flex justify-between px-4 mx-auto max-w-screen-lg" *ngIf="!isLoading && blog">
+  <article
+    class="mx-auto w-full format bg-white format-sm shadow-custom p-10 sm:format-base lg:format-lg format-blue dark:format-invert"
+  >
+    <header class="mb-4 lg:mb-6 not-format">
+      <div *ngIf="isEditable" class="flex justify-end">
+        <div class="flex space-x-2">
+          <button (click)="toggleEditblog()"
+            class="rounded-lg bg-blue-500 px-3 py-1 font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            data-ripple-light="true"
+          >
+            <i class="fas fa-edit text-sm"></i>
+          </button>
+          <button (click)="onDelete()"
+            class="rounded-lg bg-red-500 px-3 py-1 font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            data-ripple-light="true"
+          >
+            <i class="fas fa-trash-alt text-sm"></i>
+          </button>
+        </div>
+      </div>
+      <address class="flex items-center justify-between mb-6 not-italic">
+        <div class="inline-flex items-center mr-3 text-sm text-gray-900">
+          <i
+            class="fa-solid fa-circle-user mr-4 text-[3rem] text-[#c7c7c7] rounded-full"
+          ></i>
+          <!-- <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos"> -->
+          <div>
+            <a rel="author" class="text-xl font-bold text-gray-900">
+              {{ blog.author.fullName }}
+            </a>
+            <p class="text-base text-gray-500">{{ blog.author.work }}</p>
+            <p class="text-base text-gray-500">
+              <time pubdate datetime="2022-02-08" title="February 8th, 2022">
+                {{ blog.createdAt | date }}
+              </time>
+            </p>
+          </div>
+        </div>
+      </address>
+      <div class="mb-4 lg:mb-6">
+        <h1
+          class="text-xl font-extrabold leading-tight text-gray-900 lg:text-3xl"
+        >
+          {{ blog.title }}
+        </h1>
+        <div class="text-blue-600 font-semibold text-lg">
+          #{{ blog.category }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <p>{{ blog.description }}</p>
+      </div>
+      <figure>
+        <img
+          [src]="blog.image"
+          class="h-[350px] w-full object-contain py-2"
+          alt="image"
+        />
+        <figcaption></figcaption>
+      </figure>
+    </header>
+
+    <p class="lead" [innerHTML]="blog.content"></p>
+  </article>
+</div>
+
+
+
+<app-delete-alert *ngIf="showDeleteModal" (alertResponse)="onDeleteConfirm($event)"></app-delete-alert>

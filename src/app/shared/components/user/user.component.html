@@ -1,0 +1,48 @@
+<div class="bg-gray-100 min-h-screen">
+
+  <!-- Top Navbar -->
+  <nav class="bg-white shadow-md">
+      <div class="container mx-auto flex justify-between items-center py-4 px-4 lg:px-8">
+          <h1 class="text-xl font-semibold">nexThoughts</h1>
+          <!-- Sidebar Toggle Button for Small Screens -->
+          <button class="text-gray-500 hover:text-gray-600 lg:hidden" (click)="toggleSidebar()">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+          </button>
+          <!-- Horizontal Navbar Links for Large Screens -->
+          <div class="hidden lg:flex space-x-10">
+              <a *ngFor="let item of menues" (click)="onMenuClick(item)"
+              class="hover:text-indigo-400 cursor-pointer">{{ item.name }}</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="flex">
+      <!-- Sidebar: Hidden by default, flex on large screens -->
+      <div
+          class="bg-gray-800 lg:hidden text-white w-56 min-h-screen lg:relative lg:translate-x-0 transition-transform transform -translate-x-full"
+          [class.translate-x-0]="isSidebarOpen"
+          [class.absolute]="!isSidebarOpen" id="sidebar">
+          <div class="p-4">
+              <ul class="mt-4">
+                  <li
+                  *ngFor="let item of menues"
+                  (click)="onMenuClick(item)"
+                  class="relative px-4 py-3 flex items-center space-x-4 rounded-lg bg-gradient-to-r hover:from-cyan-600 hover:to-sky-400 text-white hover:shadow-lg transition duration-300 ease-in-out"
+                >
+                  <i [classList]="item.icon"></i>
+                  <span class="-mr-1 font-medium">{{ item.name }}</span>
+                </li>
+              </ul>
+          </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col my-8">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
