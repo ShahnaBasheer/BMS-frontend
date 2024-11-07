@@ -15,7 +15,7 @@ import { PageLoaderComponent } from '../page-loader/page-loader.component';
 import { BlogService } from '../../../features/blogs/services/blog.service';
 
 @Component({
-  selector: 'app-edit-Blog',
+  selector: 'app-edit-blog',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,8 +23,8 @@ import { BlogService } from '../../../features/blogs/services/blog.service';
     QuillModule,
     PageLoaderComponent,
   ],
-  templateUrl: './edit-Blog.component.html',
-  styleUrl: './edit-Blog.component.css',
+  templateUrl: './edit-blog.component.html',
+  styleUrl: './edit-blog.component.css',
 })
 export class EditBlogComponent {
   blog!: Blog;
