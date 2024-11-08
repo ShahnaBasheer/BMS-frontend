@@ -5,16 +5,21 @@ import { DetailCardComponent } from '../../../../shared/components/detail-card/d
 import { CommonModule } from '@angular/common';
 import { PageLoaderComponent } from '../../../../shared/components/page-loader/page-loader.component';
 import { Blog } from '../../../../core/models/blog.model';
+import { HeaderComponent } from "../../../../shared/components/header/header.component";
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ DetailCardComponent, CommonModule, PageLoaderComponent ],
+  imports: [DetailCardComponent, CommonModule, PageLoaderComponent, HeaderComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
+
 export class DashboardComponent {
   blogs: Blog[] = [];
+  interests: string[] = [];
+  intrst: string = '';
   isLoading: boolean = false;
   constructor(
     private blogservice: BlogService,
@@ -22,12 +27,21 @@ export class DashboardComponent {
   ) {}
 
   ngOnInit(): void {
+      this.loadDashboard();
+  }
+  onSelectInterest(item: string){
+      this.intrst = item;
+      this.loadDashboard();
+
+  }
+
+  loadDashboard(){
     this.isLoading = true;
-    this.blogservice.getDashboard().subscribe({
+    this.blogservice.getDashboard(this.intrst).subscribe({
       next: (res) => {
         this.isLoading = false;
         this.blogs = res.data?.blogs || [];
-
+        this.interests = res.data?.interests || [];
       },
       error: (err) => {
         this.isLoading = false;
@@ -37,6 +51,4 @@ export class DashboardComponent {
       },
     });
   }
-
-
 }

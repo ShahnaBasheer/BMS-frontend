@@ -13,8 +13,9 @@ import {
 export class  BlogService {
   constructor(private http: HttpClient) {}
 
-  getDashboard(): Observable<{ data: { blogs: Blog[], user: string}, message: string }> {
-    return this.http.get<{ data: { blogs: Blog[], user: string}, message: string }>(`${environment.userUrl}/dashboard`, {
+  getDashboard(item: string): Observable<{ data: { blogs: Blog[], user: string, interests: string[] }, message: string }> {
+    return this.http.get<{ data: { blogs: Blog[], user: string, interests: string[]}, message: string }>(`${environment.userUrl}/dashboard` ,{
+      params: { interest: item },
       withCredentials: true,
     });
   }
@@ -40,7 +41,7 @@ export class  BlogService {
   }
 
   getMyBlogs(): Observable<{ data: { blogs: Blog[], user: string}, message: string }> {
-    return this.http.get<{ data: { blogs: Blog[], user: string}, message: string }>(`${environment.userUrl}/myBlogs`, {
+    return this.http.get<{ data: { blogs: Blog[], user: string}, message: string }>(`${environment.userUrl}/myblogs`, {
       withCredentials: true,
     });
   }

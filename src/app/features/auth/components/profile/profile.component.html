@@ -1,15 +1,7 @@
 <app-page-loader *ngIf="isLoading"></app-page-loader>
 
 <div *ngIf="!isLoading && profileInfo">
-  <div
-    class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 text-center mb-4"
-  >
-    <h2
-      class="text-3xl font-extrabold text-gray-800 inline-block relative after:absolute after:w-4/6 after:h-1 after:left-0 after:right-0 after:-bottom-4 after:mx-auto after:bg-pink-400 after:rounded-full"
-    >
-      My Profile
-    </h2>
-  </div>
+  <app-header [header]="'My Profile'"></app-header>
 
   <div class="h-full max-w-4xl mx-auto">
     <div

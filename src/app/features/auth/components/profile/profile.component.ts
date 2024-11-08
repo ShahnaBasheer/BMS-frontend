@@ -9,11 +9,12 @@ import { ToastrService } from 'ngx-toastr';
 import { EditProfileModalComponent } from '../../../../shared/components/edit-profile-modal/edit-profile-modal.component';
 import { AuthService } from '../../../../core/services/auth.service';
 import { PageLoaderComponent } from '../../../../shared/components/page-loader/page-loader.component';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ LoaderComponent, CommonModule,
+  imports: [ LoaderComponent, CommonModule, HeaderComponent,
       EditProfileModalComponent,ReactiveFormsModule, PageLoaderComponent ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'

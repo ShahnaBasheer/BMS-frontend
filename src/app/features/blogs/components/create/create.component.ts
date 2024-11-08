@@ -16,6 +16,7 @@ import {
 } from '../../../../core/models/blog.model';
 import { PageLoaderComponent } from '../../../../shared/components/page-loader/page-loader.component';
 import { BlogService } from '../../services/blog.service';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-create-blog',
@@ -25,6 +26,7 @@ import { BlogService } from '../../services/blog.service';
     QuillModule,
     CommonModule,
     PageLoaderComponent,
+    HeaderComponent
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',

@@ -13,7 +13,6 @@ export const AuthGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   const url = state.url;
   const token = jwtTokenService.isValidToken(environment.us_accessKey);
 
-  console.log(url)
   // If token is valid
   if (token) {
     // Prevent access to login, signup, or register if already authenticated

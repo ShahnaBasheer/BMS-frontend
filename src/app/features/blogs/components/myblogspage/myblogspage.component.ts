@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { DeleteAlertComponent } from '../../../../shared/components/delete-alert/delete-alert.component';
 import { PageLoaderComponent } from '../../../../shared/components/page-loader/page-loader.component';
 import { MyblogComponent } from '../../../../shared/components/myblog/myblog.component';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
 
 
 
 @Component({
   selector: 'app-myblogspage',
   standalone: true,
-  imports: [ MyblogComponent, CommonModule,
+  imports: [ MyblogComponent, CommonModule, HeaderComponent,
     DeleteAlertComponent, PageLoaderComponent],
   templateUrl: './myblogspage.component.html',
   styleUrl: './myblogspage.component.css',
