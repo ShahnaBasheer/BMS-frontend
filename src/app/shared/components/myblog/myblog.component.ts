@@ -13,15 +13,15 @@ import { TruncatePipe } from '../../../core/pipe/truncate.pipe';
   templateUrl: './myblog.component.html',
   styleUrl: './myblog.component.css',
 })
+
 export class MyblogComponent {
   @Input({ required: true }) blog!: Blog;
   @Output() blogDeleted = new EventEmitter<boolean>(); // Create EventEmitter
 
 
   constructor(private router: Router) {}
-  onSelectblog() {
-    console.log(this.blog, "jkhkkk");
 
+  onSelectblog() {
     this.router.navigate(['/details', this.blog?._id]);
   }
 
