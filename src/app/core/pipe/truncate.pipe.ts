@@ -9,10 +9,7 @@ export class TruncatePipe implements PipeTransform {
   transform(value: string, limit: number = 100): string {
     if (!value) return '';
 
-    return value.length > limit ? value.substring(0, limit) + '...' : value
-
-    console.log(value)
-    return value; // Return original if within limit
+    return value.length > limit ? value.substring(0, limit) + '...' : value;
   }
 
 }

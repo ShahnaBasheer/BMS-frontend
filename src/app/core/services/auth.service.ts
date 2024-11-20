@@ -9,6 +9,7 @@ import { AuthResponse } from '../models/response.model';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private emailSubject = new BehaviorSubject<string>('');
   email$ = this.emailSubject.asObservable();

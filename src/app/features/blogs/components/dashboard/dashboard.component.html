@@ -9,11 +9,10 @@
   >
     <div class="block sm:hidden">
       <a
-        href="#"
         class="block md:hidden text-base font-bold uppercase text-center lg:flex justify-center items-center"
       >
         Topics
-        <i class="fas ml-2"></i>
+        <i class="fa-solid fa-angle-down ml-2"></i>
       </a>
     </div>
     <div class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
@@ -21,9 +20,9 @@
         class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2"
       >
         <a (click)="onSelectInterest('')" [ngClass]="{'bg-gray-400': intrst === '' }"
-           class="hover:bg-gray-400 rounded py-2 px-4 mx-2">All</a>
+           class="hover:bg-gray-400 rounded py-2 px-4 mx-2 cursor-pointer">All</a>
         <a (click)="onSelectInterest(interest)" *ngFor="let interest of interests"
-            class="hover:bg-gray-400 rounded py-2 px-4 mx-2"
+            class="hover:bg-gray-400 rounded py-2 px-4 mx-2 cursor-pointer"
             [ngClass]="{'bg-gray-400': intrst === interest }"
             >{{ interest }}
         </a>
@@ -41,6 +40,18 @@
 
     <app-detail-card *ngFor="let item of blogs" [blog]="item"></app-detail-card>
 
+    <div class="w-full text-center py-6" *ngIf="hasMoreBlogs">
+      <button
+        (click)="loadMoreBlogs()"
+        class="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600">
+        Load More
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
     <!-- <div class="w-full flex pt-6">
       <a href="#" class="w-1/2 bg-white shadow hover:shadow-md text-left p-6">
         <p class="text-lg text-blue-800 font-bold flex items-center">
@@ -55,5 +66,3 @@
         </p>
       </a>
     </div> -->
-  </div>
-</div>

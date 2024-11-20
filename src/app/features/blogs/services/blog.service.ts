@@ -13,9 +13,9 @@ import {
 export class  BlogService {
   constructor(private http: HttpClient) {}
 
-  getDashboard(item: string): Observable<{ data: { blogs: Blog[], user: string, interests: string[] }, message: string }> {
+  getDashboard(item: string, page: number, size: number): Observable<{ data: { blogs: Blog[], user: string, interests: string[] }, message: string }> {
     return this.http.get<{ data: { blogs: Blog[], user: string, interests: string[]}, message: string }>(`${environment.userUrl}/dashboard` ,{
-      params: { interest: item },
+      params: { interest: item, page, size },
       withCredentials: true,
     });
   }
@@ -40,8 +40,9 @@ export class  BlogService {
     );
   }
 
-  getMyBlogs(): Observable<{ data: { blogs: Blog[], user: string}, message: string }> {
-    return this.http.get<{ data: { blogs: Blog[], user: string}, message: string }>(`${environment.userUrl}/myblogs`, {
+  getMyBlogs(category: string, page: number, size: number): Observable<{ data: { blogs: Blog[], user: string, categories: string[]}, message: string }> {
+    return this.http.get<{ data: { blogs: Blog[], user: string, categories: string[]}, message: string }>(`${environment.userUrl}/myblogs`, {
+      params: { category, page, size },
       withCredentials: true,
     });
   }
@@ -81,4 +82,5 @@ export class  BlogService {
       }
     );
   }
+
 }

@@ -21,34 +21,53 @@ export class DashboardComponent {
   interests: string[] = [];
   intrst: string = '';
   isLoading: boolean = false;
+  page: number = 1;
+  size: number = 10;
+  hasMoreBlogs = true;
+
+
   constructor(
     private blogservice: BlogService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-      this.loadDashboard();
+      this.loadMoreBlogs();
   }
   onSelectInterest(item: string){
       this.intrst = item;
-      this.loadDashboard();
-
+      this.page = 1;
+      this.size = 10;
+      this.blogs = [];
+      this.hasMoreBlogs = true;
+      this.loadMoreBlogs();
   }
 
-  loadDashboard(){
+
+  loadMoreBlogs() {
     this.isLoading = true;
-    this.blogservice.getDashboard(this.intrst).subscribe({
+
+    this.blogservice.getDashboard(this.intrst, this.page, this.size).subscribe({
       next: (res) => {
+        if (res.data?.blogs?.length > 0) {
+          this.blogs.push(...res.data?.blogs)
+          this.interests = res.data?.interests || [];
+          this.page++;
+        } else {
+          this.hasMoreBlogs = false; // No more blogs to load
+        }
         this.isLoading = false;
-        this.blogs = res.data?.blogs || [];
-        this.interests = res.data?.interests || [];
       },
       error: (err) => {
         this.isLoading = false;
         this.toastr.error(
           err.error?.message ?? 'Something went wrong.Please Try Later'
         );
-      },
-    });
+      }
+    })
   }
 }
+
+
+
+
