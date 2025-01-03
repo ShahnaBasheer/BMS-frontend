@@ -41,7 +41,7 @@ export class  BlogService {
   }
 
   getMyBlogs(category: string, page: number, size: number): Observable<{ data: { blogs: Blog[], user: string, categories: string[]}, message: string }> {
-    return this.http.get<{ data: { blogs: Blog[], user: string, categories: string[]}, message: string }>(`${environment.userUrl}/myblogs`, {
+    return this.http.get<{ data: { blogs: Blog[], us111er: string, categories: string[]}, message: string }>(`${environment.userUrl}/myblogs`, {
       params: { category, page, size },
       withCredentials: true,
     });
@@ -84,3 +84,7 @@ export class  BlogService {
   }
 
 }
+
+
+
+
