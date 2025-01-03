@@ -13,8 +13,6 @@ export const ErrorInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next:
     const toastr = inject(ToastrService);
     const tokenService = inject(TokenService);
     const path = (new URL(req.url)).pathname;
-
-
     return next(req).pipe(
         catchError((error: HttpErrorResponse) => {
             let errorMessage = 'An unknown error occurred!';
@@ -30,7 +28,6 @@ export const ErrorInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next:
                     if(error.status === 401){
                       if(req.headers.has('Authorization')){
                         console.log("401 admin authorization");
-
                       }
                     }
                 }  else if(path.startsWith('/api/')){
@@ -39,11 +36,9 @@ export const ErrorInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next:
                       tokenService.removeToken(environment.us_accessKey);
                       router.navigate(['/login'], { replaceUrl: true })
                     } else if(error.status === 403){
-                      toastr.error("User account is Blocked!", 'error');
+                      toastr.error("User account is Blocked!");
                     }
                 }
-
-
             }
             // throwError(() => new Error(errorMessage))
 
